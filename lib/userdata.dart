@@ -9,6 +9,7 @@ import 'package:http/http.dart'as http;
 import 'package:newuser/home.dart';
 import 'package:location/location.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class userdata extends StatefulWidget {
   const userdata({Key? key}) : super(key: key);
@@ -72,11 +73,15 @@ class _userdataState extends State<userdata> {
             child: Form(key: _formKey,
                   child: Container(height: MediaQuery.of(context).size.height,
                       width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(image: DecorationImage(image:AssetImage('assets/image/new.png'),fit: BoxFit.cover)),
-                      child: Center(widthFactor: 100,heightFactor: 100,
+    decoration: BoxDecoration(
+     image: DecorationImage(
+    fit: BoxFit.fill, image:AssetImage('assets/image/mai.png'),),),
+
+    child: Center(widthFactor: 100,heightFactor: 100,
                             child: SingleChildScrollView(scrollDirection: Axis.vertical,
                               child: Column(
-                                children: [SizedBox(height: 30,width: 450,),
+                                children: [
+                                  SizedBox(height: 30,width: 450,),
 
                                   Container(child: _imageFile==null?
                                   GestureDetector(onTap:(){ showModalBottomSheet(context: context,
@@ -102,11 +107,12 @@ class _userdataState extends State<userdata> {
                                   ):
                                   CircleAvatar(radius:40,child: CircleAvatar(backgroundImage: Image.file(_imageFile!,fit: BoxFit.cover,).image,radius: 40,))),
                                   SizedBox(height: 5,),
-                                      SizedBox(width:305,child: Text('Name',
-                                        style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600),)),
+                                     // SizedBox(width:305,child: Text('Name',
+                                      //  style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600),)),
                                       Padding(
                                         padding: const EdgeInsets.all(5),
                                         child: Container(height: 40,width: MediaQuery.of(context).size.width/1.3,
+                                          decoration: BoxDecoration( ),
                                           child:TextFormField(controller: name,
                                               cursorColor: Colors.pinkAccent[100],
                                               validator: (value){
@@ -114,13 +120,15 @@ class _userdataState extends State<userdata> {
                                                   return 'Name is required';
                                                 }
                                               },
-                                              decoration: InputDecoration(hintText: 'Name',border: InputBorder.none,
+                                              decoration: InputDecoration(hintText: 'Name',border: InputBorder.none,hintStyle: TextStyle(color: Colors.black),
                                                   contentPadding: EdgeInsets.all(5),
-                                                  errorBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                  filled: true,
+                                                  fillColor: Colors.grey[100],
+                                                  errorBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                       borderSide: BorderSide(color: Colors.red,width: 1)),
-                                                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                       borderSide:BorderSide(width: 1,color: Colors.black) ),
-                                                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                  focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                       borderSide:BorderSide(width: 1,color: Colors.pinkAccent.shade100) ),prefixIcon: Padding(
                                                         padding: const EdgeInsets.all(5),
                                                         child: Icon(Icons.person,color: Colors.pinkAccent[100],),
@@ -128,9 +136,9 @@ class _userdataState extends State<userdata> {
                                             ),
                                         ),
                                       ),
-                                  SizedBox(height: 2,),
-                                      SizedBox(width:305,child: Text('Email',
-                                          style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                  SizedBox(height: 3,),
+                                      //SizedBox(width:305,child: Text('Email',
+                                        //  style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                       Container(height: 40,width: MediaQuery.of(context).size.width/1.3,
                                         child: TextFormField(controller:email,
                                             cursorColor: Colors.pinkAccent[100],
@@ -142,14 +150,17 @@ class _userdataState extends State<userdata> {
                                               }
                                               return null;
                                             },
-                                            decoration: InputDecoration(hintText: 'Email Address',border:InputBorder.none,
+                                            decoration: InputDecoration(hintText: 'Email Address',border:InputBorder.none,hintStyle: TextStyle(color: Colors.black),
                                                 contentPadding: EdgeInsets.all(5),
-                                                errorBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                filled: true,
+                                                fillColor: Colors.grey[100],
+
+                                                errorBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                     borderSide: BorderSide(color: Colors.red,width: 1)),
 
-                                                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                     borderSide:BorderSide(width: 1,color: Colors.black) ),
-                                                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                     borderSide:BorderSide(width: 1,color: Colors.pinkAccent.shade100) ),prefixIcon: Padding(
                                                       padding: const EdgeInsets.all(5),
                                                       child: Icon(Icons.email,color: Colors.pinkAccent[100],),
@@ -157,8 +168,8 @@ class _userdataState extends State<userdata> {
                                           ),
 
                                       ),
-                                  SizedBox(height: 2,),
-                                      SizedBox(width:305,child: Text('Password',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                  SizedBox(height: 7,),
+                                    //  SizedBox(width:305,child: Text('Password',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                       Container(height: 40,width: MediaQuery.of(context).size.width/1.3,
                                         child: TextFormField(controller: pass,
                                             cursorColor: Colors.pinkAccent[100],
@@ -175,14 +186,17 @@ class _userdataState extends State<userdata> {
                                               }
                                               return null;
                                             },
-                                            decoration: InputDecoration(hintText: 'Password',border: InputBorder.none,
+                                            decoration: InputDecoration(hintText: 'Password',border: InputBorder.none,hintStyle: TextStyle(color: Colors.black),
                                               contentPadding: EdgeInsets.all(5),
-                                              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                              filled: true,
+                                              fillColor: Colors.grey[100],
+
+                                              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                   borderSide: BorderSide(color: Colors.red,width: 1)),
 
-                                              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                     borderSide:BorderSide(width: 1,color: Colors.black) ),
-                                                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                                focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                     borderSide:BorderSide(width: 1,color: Colors.pinkAccent.shade100),
                                                 ),prefixIcon: Icon(Icons.lock,color: Colors.pinkAccent[100],),
 
@@ -199,8 +213,8 @@ class _userdataState extends State<userdata> {
                                             ),
                                           ),
                                       ),
-                                  SizedBox(height: 2,),
-                                        SizedBox(width:305,child: Text('Confirm Password',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                  SizedBox(height: 7,),
+                                       // SizedBox(width:305,child: Text('Confirm Password',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                       Container(height: 40,width: MediaQuery.of(context).size.width/1.3,
                                         child: TextFormField(controller: cpass,
                                           cursorColor: Colors.pinkAccent[100],
@@ -216,14 +230,17 @@ class _userdataState extends State<userdata> {
                                             }
                                             return null;
                                           },
-                                          decoration: InputDecoration(hintText: 'Confirm Password',border: InputBorder.none,
+                                          decoration: InputDecoration(hintText: 'Confirm Password',border: InputBorder.none,hintStyle: TextStyle(color: Colors.black),
                                             contentPadding: EdgeInsets.all(5),
-                                            errorBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                            filled: true,
+                                            fillColor: Colors.grey[100],
+
+                                            errorBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                 borderSide: BorderSide(color: Colors.red,width: 1)),
 
-                                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                            enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                   borderSide:BorderSide(width: 1,color: Colors.black) ),
-                                              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                   borderSide:BorderSide(width: 1,color: Colors.pinkAccent.shade100) ),prefixIcon: Icon(Icons.lock,color: Colors.pinkAccent[100],),
                                             suffixIcon: IconButton(
                                                 onPressed: () {
@@ -237,8 +254,8 @@ class _userdataState extends State<userdata> {
                                           ),
                                         ),
                                       ),
-                                  SizedBox(height: 2,),
-                                        SizedBox(width:305,child: Text('Mobile Number',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                  SizedBox(height: 7,),
+                                       // SizedBox(width:305,child: Text('Mobile Number',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                       Container(height: 40,width: MediaQuery.of(context).size.width/1.3,
                                         child: TextFormField(controller: mob,
                                           cursorColor: Colors.pinkAccent[100],
@@ -251,95 +268,120 @@ class _userdataState extends State<userdata> {
                                             return null;
 
                                           },
-                                          decoration: InputDecoration(hintText: 'Enter your 10 digit mobile number',
+                                          decoration: InputDecoration(hintText: 'Enter your 10 digit mobile number',hintStyle: TextStyle(color: Colors.black),
                                               contentPadding: EdgeInsets.all(5),
+                                              filled: true,
+                                              fillColor: Colors.grey[100],
+
                                               border: InputBorder.none,
-                                              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                   borderSide: BorderSide(color: Colors.red,width: 1)),
 
-                                              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                              enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                   borderSide:BorderSide(width: 1,color: Colors.black) ),
-                                              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.zero,
+                                              focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),
                                                   borderSide:BorderSide(width: 1,color: Colors.pinkAccent.shade100) ),prefixIcon: Icon(Icons.call,color: Colors.pinkAccent[100],)),
                                         ),
                                       ),
-                                  SizedBox(height: 2,),
-                                  SizedBox(width:305,child: Text('Gender',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
-                                     SizedBox(height:0.5 ,),
-                                     Row(
-                                      children: [SizedBox(width:20 ,),
-                                        SizedBox(width: 142,
-                                          child: RadioListTile(title:Text('Male'),
-                                            value: 'Male',
-                                            groupValue: gender,
-                                            onChanged: (value){
-                                              setState(() {
-                                                gender=value;
-                                                print('$gender');
-                                              });
-                                            },
-                                            activeColor: Colors.pinkAccent[100],),
-                                        ),
-                                        SizedBox(width: 15,),
-                                        SizedBox(width: 170,
-
-                                          child:RadioListTile(activeColor: Colors.pinkAccent[100],
-                                            title:Text('Female'),
-                                            value: 'Female',
-                                            groupValue: gender,
-                                            onChanged: (value){
-                                              setState(() {
-                                                gender=value;
-                                              });
-                                            },
+                                  SizedBox(height: 7,),
+                                  Row(
+                                      children: [SizedBox(width: 45,),
+                                        Container(height: 40,width: 100,
+                                        decoration: BoxDecoration(border:
+                                        Border(top: BorderSide(width: 1,color: Colors.black),
+                                            right:BorderSide(width: 1,color: Colors.black),
+                                            left: BorderSide(width: 1,color: Colors.black),
+                                            bottom: BorderSide(width: 1,color: Colors.black) ),color: Colors.grey[100],
+                                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(3),
+                                          child: Center(
+                                            child: Text('Gender',style:
+                                            TextStyle(color: Colors.black,fontSize: 17,fontWeight: FontWeight.w500)),
                                           ),
-                                        )
+                                        ),
+                                      ),
+                                        SizedBox(width:30 ,),
+                                        Column(
+                                          children: [
+                                            Text('Male'),
+                                            Radio(//title:Text('Male',),
+                                                value: 'Male',
+                                                groupValue: gender,
+                                                onChanged: (value){
+                                                  setState(() {
+                                                    gender=value;
+                                                    print('$gender');
+                                                  });
+                                                },
+                                                activeColor: Colors.pinkAccent[100],),
+                                          ],
+                                        ),
+
+                                        SizedBox(width: 55,),
+                                        Column(
+                                          children: [Text('Female'),
+                                            Radio(activeColor: Colors.pinkAccent[100],
+                                                //title:Text('Female'),
+                                                value: 'Female',
+                                                groupValue: gender,
+                                                onChanged: (value){
+                                                  setState(() {
+                                                    gender=value;
+                                                  });
+                                                },
+                                              ),
+                                          ],
+                                        ),
                                       ],
                                     ),
 
-                                  SizedBox(height: 2,),
-                                      SizedBox(width:305,child: Text('Select City',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
-                                      Container(height: 40,width: MediaQuery.of(context).size.width/1.3,decoration: BoxDecoration(borderRadius:BorderRadius.zero,
-                                          border:Border.all(color: Colors.black,width: 1)),
+                                  SizedBox(height: 7,),
+                                     // SizedBox(width:305,child: Text('Select City',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                      Container(height: 40,width: MediaQuery.of(context).size.width/1.3,
+                                        decoration: BoxDecoration(borderRadius:BorderRadius.all(Radius.circular(10)),
+                                          border:Border.all(color: Colors.black,width: 1),color: Colors.grey[100]),
                                         child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: DropdownButtonHideUnderline(
-                                            child: DropdownButton2(
-                                              items: items
-                                                  .map((item) => DropdownMenuItem<String>(
-                                                value: item,
-                                                child: Text(
-                                                  item,
-                                                  style: const TextStyle(
-                                                    fontSize: 14,
-                                                  ),
-                                                ),
-                                              ))
-                                                  .toList(),
-                                              value: selectedValue,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  selectedValue = value as String;
-                                                });
-                                              },
-                                              buttonStyleData: const ButtonStyleData(
-                                                height: 50,
-                                                width: 140,
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: DropdownButtonHideUnderline(
+                                              child: DropdownButton2(hint: Text('select city',style: TextStyle(color: Colors.black),),
+                                                items: items
+                                                    .map((item) => DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(
+                                                    item,
+                                                    style: const TextStyle(
+                                                      fontSize: 14,
+                                                    ),
 
-                                              ),
-                                              menuItemStyleData: const MenuItemStyleData(
-                                                height: 40,
+                                                  ),
+                                                ))
+                                                    .toList(),
+                                                value: selectedValue,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    selectedValue = value as String;
+                                                  });
+                                                },
+                                                buttonStyleData: const ButtonStyleData(
+                                                  height: 50,
+                                                  width: 200,
+
+                                                ),
+                                                menuItemStyleData: const MenuItemStyleData(
+                                                  height: 40,
+                                                ),
                                               ),
                                             ),
                                           ),
-                                        ),
-
                                       ),
-                                  SizedBox(height: 2),
-                                      SizedBox(width:305,child: Text('Date of Birth',
-                                          style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+
+
+
+                                  SizedBox(height: 7),
+                                      //SizedBox(width:305,child: Text('Date of Birth',
+                                        //  style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                       Container(height:40,width:MediaQuery.of(context).size.width/1.3,
-                                          decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1),borderRadius: BorderRadius.zero),
                                           child: Padding(
                                             padding: const EdgeInsets.all(1.2),
                                             child: TextFormField(
@@ -347,7 +389,12 @@ class _userdataState extends State<userdata> {
                                                 cursorColor: Colors.pinkAccent[100],
                                                 decoration: InputDecoration(
                                                   border: InputBorder.none,
+                                                  enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(10)),borderSide: BorderSide(color: Colors.black,width: 1)),
+                                                  filled: true,
+                                                  fillColor: Colors.grey[100],
+
                                                   hintText: 'DD/MM/YYYY',
+                                                  hintStyle: TextStyle(color: Colors.black),
                                                   suffixIcon: Icon(Icons.date_range,color: Colors.pinkAccent[100],),
                                                 ),
                                                 readOnly: true,
@@ -371,42 +418,38 @@ class _userdataState extends State<userdata> {
                                                 }
                                             ),
                                           )),
-                                  SizedBox(height: 2,),
+                                  SizedBox(height: 3,),
                                   Row(
                                     children: [SizedBox(width: 45,),
                                       Column(
                                         children: [
-                                          SizedBox(width:132,child: Text('Lattitude',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                          //SizedBox(width:132,child: Text('Lattitude',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                           SizedBox(height: 5,),
                                             Container(height: 40,width: MediaQuery.of(context).size.width/3,
-                                              decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1)),
+                                              decoration: BoxDecoration(border: Border.all(color: Colors.black,width: 1),color: Colors.grey[100],borderRadius: BorderRadius.all(Radius.circular(10))),
                                               child: Padding(
                                                 padding: const EdgeInsets.all(8.0),
-                                                child: Text('$lat'),
+                                                child: Text('Lat:$lat',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
                                               ),),
                                         ],
                                       ),
                                       SizedBox(width: 41,),
                                       Column(
                                         children: [
-                                          SizedBox(width:132,child: Text('Longitude',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
+                                         // SizedBox(width:132,child: Text('Longitude',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600))),
                                           SizedBox(height: 5,),
                                           Container(height: 40,width: MediaQuery.of(context).size.width/3,
-                                            decoration: BoxDecoration(border:Border.all(color: Colors.black,width: 1)),
+                                            decoration: BoxDecoration(border:Border.all(color: Colors.black,width: 1),color: Colors.grey[100],borderRadius: BorderRadius.all(Radius.circular(10))),
                                             child: Padding(
                                               padding: const EdgeInsets.all(8),
-                                              child: Text('$long'),
+                                              child: Text('Long:$long',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
                                             ),),
                                         ],
                                       ),
 
                                     ],
                                   ),
-
-
-
-
-
+                                  SizedBox(height: 1,),
                                   Row(mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Checkbox(activeColor: Colors.pinkAccent[100],
@@ -428,11 +471,13 @@ class _userdataState extends State<userdata> {
                                           }
 
                                       ),
-                                      Text('Check',style: TextStyle(color: Colors.pinkAccent[100],fontSize: 20,fontWeight: FontWeight.w600)),
+                                      Text('Check',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600)),
                                     ],
                                   ),
                                   IgnorePointer(ignoring: !value1,
-                                    child: ElevatedButton(style:ElevatedButton.styleFrom(backgroundColor:colorcode==1?Colors.pinkAccent[100]: Colors.grey),onPressed: ()async {
+                                    child: ElevatedButton(style:ElevatedButton.styleFrom(backgroundColor:colorcode==1?Colors.pinkAccent[100]: Colors.grey[100],
+                                        side: BorderSide(color:Colors.black,width: 1 )),
+                                        onPressed: ()async {
                                      // if (_formKey.currentState!.validate())
                                       if (_formKey.currentState?.validate() == true){
                                         var submitdata = {};
@@ -463,38 +508,41 @@ class _userdataState extends State<userdata> {
                                         if (response.statusCode == 200) {
                                           var data = await jsonDecode(response.body);
                                           print(response.body);
-                                          if (data['status'] == 1) {
-                                            Get.defaultDialog(
-                                                title: 'Submited succesfully',
-                                                middleText: '',
-                                                actions: [
-                                                  CircleAvatar(
-                                                    child: IconButton(onPressed: () {
-                                                      Navigator.pushReplacement(context,
-                                                          MaterialPageRoute(
-                                                              builder: (contex) => home()));
-                                                    },
-                                                      icon: Icon(Icons.check),
-                                                      color: Colors.pinkAccent[100],
-                                                    ),
-                                                    backgroundColor: Colors.white,
-                                                  )
-                                                ],
-                                                backgroundColor: Colors.pinkAccent[100],
-                                                titleStyle: TextStyle(
-                                                  color: Colors.white,
-                                                ),
-                                                radius: 30);
-                                          } else {
-                                            Get.defaultDialog(
-                                                title: 'Error in Submition',
-                                                middleText: 'Try again',
-                                                backgroundColor: Colors.redAccent,
-                                                titleStyle: TextStyle(color: Colors.white));
-                                          }
+                                          
+                                          
+                                          
+                                          // if (data['status'] == 1) {
+                                          //   Get.defaultDialog(
+                                          //       title: 'Submited succesfully',
+                                          //       middleText: '',
+                                          //       actions: [
+                                          //         CircleAvatar(
+                                          //           child: IconButton(onPressed: () {
+                                          //             Navigator.pushReplacement(context,
+                                          //                 MaterialPageRoute(
+                                          //                     builder: (contex) => home()));
+                                          //           },
+                                          //             icon: Icon(Icons.check),
+                                          //             color: Colors.pinkAccent[100],
+                                          //           ),
+                                          //           backgroundColor: Colors.white,
+                                          //         )
+                                          //       ],
+                                          //       backgroundColor: Colors.pinkAccent[100],
+                                          //       titleStyle: TextStyle(
+                                          //         color: Colors.white,
+                                          //       ),
+                                          //       radius: 30);
+                                          // } else {
+                                          //   Get.defaultDialog(
+                                          //       title: 'Error in Submition',
+                                          //       middleText: 'Try again',
+                                          //       backgroundColor: Colors.redAccent,
+                                          //       titleStyle: TextStyle(color: Colors.white));
+                                          // }
                                         }
                                       }
-                                    }, child: Text('submit',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.w600))),
+                                    }, child: Text('submit',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.w600))),
                                   )
                                 ],
                               ),
