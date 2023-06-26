@@ -481,26 +481,25 @@ class _userdataState extends State<userdata> {
                                      // if (_formKey.currentState!.validate())
                                       if (_formKey.currentState?.validate() == true){
                                         var submitdata = {};
-                                        var postUri = Uri.parse(
-                                            'http://samshera.000webhostapp.com/api.php');
+                                        var postUri = Uri.parse('https://ntce.000webhostapp.com/get.php');
                                         http.MultipartRequest request = http.MultipartRequest(
                                             'post', postUri);
                                         if (_imageFile != null) {
                                           request.files.add(http.MultipartFile.fromBytes(
-                                              'photo',
+                                              'img',
                                               File(_imageFile!.path).readAsBytesSync(),
                                               filename: _imageFile!.path));
                                         }
-                                        request.fields['name'] = name.text;
+                                        request.fields['uname'] = name.text;
                                         request.fields['email'] = email.text;
                                         request.fields['pass'] = pass.text;
                                         request.fields['cpass'] = cpass.text;
                                         request.fields['mob'] = mob.text;
                                         request.fields['gender'] = gender.toString();
                                         request.fields['city'] = selectedValue.toString();
-                                        request.fields['dob'] = Inputdate.text;
-                                        request.fields['latitude']=lat.toString();
-                                        request.fields['longitude']=long.toString();
+                                        request.fields['birthdate'] = Inputdate.text;
+                                        request.fields['lat']=lat.toString();
+                                        request.fields['long']=long.toString();
                                         var streamedResponse = await request.send();
                                         print(request.fields);
                                         var response = await http.Response.fromStream(
